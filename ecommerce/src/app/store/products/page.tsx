@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, Suspense } from "react";
 import { motion } from "framer-motion";
 import { Search } from "lucide-react";
 import { Product } from "@/types/product";
@@ -8,7 +8,7 @@ import { ProductCard } from "@/components/products/ProductCard";
 import { Input } from "@/components/ui/input";
 import { useSearchParams } from "next/navigation";
 
-export default function ProductsPage() {
+function ProductGrid() {
   const searchParams = useSearchParams();
   const categoryParam = searchParams.get("category");
 
@@ -139,5 +139,13 @@ export default function ProductsPage() {
         )}
       </div>
     </main>
+  );
+}
+
+export default function ProductsPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ProductGrid />
+    </Suspense>
   );
 }

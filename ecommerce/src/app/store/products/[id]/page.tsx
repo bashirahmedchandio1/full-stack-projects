@@ -1,5 +1,6 @@
 import { Product } from "@/types/product";
 import { ProductDetailClient } from "@/components/products/ProductDetailClient";
+import { getAllProducts } from "@/data/products-data";
 
 interface ProductDetailPageProps {
   params: {
@@ -14,18 +15,11 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
 // Generate static params for SSG
 export async function generateStaticParams() {
   try {
-    const response = await fetch(
-      `${
-        process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000"
-      }/api/products`
-    );
-    const data = await response.json();
+    const products = getAllProducts();
 
-    if (data.success) {
-      return data.data.map((product: Product) => ({
-        id: product.id,
-      }));
-    }
+    return products.map((product: Product) => ({
+      id: product.id,
+    }));
   } catch (error) {
     console.error("Error generating static params:", error);
   }
