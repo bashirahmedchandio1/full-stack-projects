@@ -15,7 +15,7 @@ const app = express();
 // Middlewares
 app.use(
   cors({
-    origin: "http://localhost:5173", // Use your frontend URL
+    origin: "https://spendwise-ten.vercel.app", // Use your frontend URL
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
   }),
@@ -42,3 +42,4 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 export default app;
+
