@@ -1,3 +1,8 @@
-const API_URL = 'https://spendwise-ten.vercel.app/api';
+import axios from "axios";
 
-export default API_URL;
+const api = axios.create({
+  baseURL: "https://full-stack-projects-tkpa.vercel.app/api",
+  withCredentials: true,
+});
+
+export default api;
