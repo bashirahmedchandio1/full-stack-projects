@@ -1,1 +1,3 @@
-export const baseURL = 'https://spendwise-ten.vercel.app/api';
+const API_URL = 'https://spendwise-ten.vercel.app/api';
+
+export default API_URL;
